@@ -2,14 +2,15 @@ import React from 'react'
 import {
   Route,
  } from 'react-router-dom'
+import RouteWithSubRoutes from './RouteWithSubRoutes'
 
-const App = ({ routes, initialData = [] }) => (
+const App = ({ routes }) => (
 
     <div>
       {routes.map((route, index) => (
 
         // pass in the initialData from the server for this specific route
-        <Route {...route} key={index}/>
+        <RouteWithSubRoutes {...route} key={index}/>
       ))}
     </div>
 )

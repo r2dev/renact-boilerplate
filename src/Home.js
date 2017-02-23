@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { fetchDataYesNo } from './actions'
 import { connect } from 'react-redux'
+import {
+  Link
+} from 'react-router-dom'
 class Home extends Component {
   static fetchData(match, store) {
     return store.dispatch(fetchDataYesNo())
@@ -8,7 +11,7 @@ class Home extends Component {
   }
   componentDidMount() {
     if (!this.props.data) {
-      this.props.fetchData
+      this.props.fetchData()
     }
   }
   render() {
@@ -27,6 +30,7 @@ class Home extends Component {
               }
             `}
           </style>
+          <Link to="/people">People List</Link>
         </div>
       )
 

@@ -11,14 +11,7 @@ import rootReducer from './rootReducer'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { flushToHTML } from 'styled-jsx/server'
-import Home from './Home'
-const routes = [
-  {
-    path: '/',
-    component: Home,
-    exact: true
-  }
-]
+import routes from './routes'
 
 const createMatch = (routes, req, store) => {
   let matches = []
@@ -33,7 +26,7 @@ const createMatch = (routes, req, store) => {
       })
     }
     if (route.routes) {
-      createMatch(route.routes)
+      createMatch(route.routes, req, store)
     }
   })
   return matches
@@ -74,7 +67,7 @@ app.get("*", (req, res) => {
           <body>
             <div id="app">${markup}</div>
             <script>window.__PRELOADED_STATE__=${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}</script>
-            <script src="./client.bundle.js"></script>
+            <script src="/client.bundle.js"></script>
           </body>
         </html>
         `)
